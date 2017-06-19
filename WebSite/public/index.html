@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Demo Web-site</title>
+	<style type="text/css">
+		
+		body {
+			background-color: black;
+		}
+
+		h1 {
+			color: orange;
+			text-align: center;
+		}
+
+		h6 {
+			color: white;
+		}
+
+		#text {
+			color: red;
+		}
+
+		input {
+
+		}
+	</style>
+</head>
+<body>
+
+<script src="https://www.gstatic.com/firebasejs/4.1.2/firebase.js"></script>
+<script>
+  // Initialize Firebase
+  var config = {
+    apiKey: "AIzaSyCKgPwaAhG9hlSYsIvQ-O_IJZ-cArYT5UU",
+    authDomain: "website-60d93.firebaseapp.com",
+    databaseURL: "https://website-60d93.firebaseio.com",
+    projectId: "website-60d93",
+    storageBucket: "website-60d93.appspot.com",
+    messagingSenderId: "123116158626"
+  };
+  firebase.initializeApp(config);
+</script>
+
+<br><br>
+	<h1>Form Fill Up</h1>
+	<br><br>
+		<p id="text"> Name : <input type="text"></p>
+		<p id="text"> Address : <input type="address" size="50"></p>
+		<p id="text"> E-mail : <input type="email" size="20"></p>
+		<p id="text"> Password : <input type="password" size="16"></p>
+		<p id="text"> City : <input type="text" size="8"></p>
+	<br><br>
+	<h6>*all the fields are neccesary.</h6>
+</body>
+</html>

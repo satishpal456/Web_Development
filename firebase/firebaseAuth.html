@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>FirebaseAuth</title>
+</head>
+<body>
+	
+	Username : <input id="un" type="text" placeholder="Username..."><br><br>
+	Password : <input id="pw" type="password" placeholder="Password..."><br><br>
+	<button id="btn" onclick="sbtn()">SignUp</button>
+	<button onclick="login()">Login</button>
+
+	<script src="https://www.gstatic.com/firebasejs/4.1.2/firebase.js"></script>
+	<script>
+	  var config = {
+	    apiKey: "AIzaSyCKgPwaAhG9hlSYsIvQ-O_IJZ-cArYT5UU",
+	    authDomain: "website-60d93.firebaseapp.com",
+	    databaseURL: "https://website-60d93.firebaseio.com",
+	    projectId: "website-60d93",
+	    storageBucket: "website-60d93.appspot.com",
+	    messagingSenderId: "123116158626"
+	  };
+	  firebase.initializeApp(config);
+	</script>
+
+	<script type="text/javascript">
+		
+		var user = firebase.auth();
+		
+		function sbtn() {
+			var usr = document.getElementById('un').value;
+			var pwd = document.getElementById('pw').value;
+			user.createUserWithEmailAndPassword(usr,pwd);
+		}
+
+		function login() {
+			var usr = document.getElementById('un').value;
+			var pwd = document.getElementById('pw').value;
+			var fb = user.signInWithEmailAndPassword(usr,pwd);
+			console.log(fb);
+		}
+	
+	</script>
+
+</body>
+</html>

@@ -1,0 +1,29 @@
+body {
+	background-color: rgba(255,105,180,0.2);
+}
+
+h1 {
+	color: blue;
+	text-align: center;
+	font-size: 300%;
+}
+
+h2 {
+	color: darkblue;
+}
+
+h3 {
+	color: darkblue;
+}
+
+ul {
+	color: purple;
+}
+
+ol {
+	color: red;
+}
+
+p {
+	color: purple;
+}

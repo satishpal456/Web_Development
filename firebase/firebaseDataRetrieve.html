@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Demo2</title>
+</head>
+<body>
+
+<textarea id="p" rows="35" cols="100"></textarea>
+
+<br>
+
+<button onclick="tf()" id="btn">Show</button>
+
+<p id="p2"></p>
+
+<script src="https://www.gstatic.com/firebasejs/4.1.2/firebase.js"></script>
+<script>
+  var config = {
+    apiKey: "AIzaSyCKgPwaAhG9hlSYsIvQ-O_IJZ-cArYT5UU",
+    authDomain: "website-60d93.firebaseapp.com",
+    databaseURL: "https://website-60d93.firebaseio.com",
+    projectId: "website-60d93",
+    storageBucket: "website-60d93.appspot.com",
+    messagingSenderId: "123116158626"
+  };
+  firebase.initializeApp(config);
+</script>
+
+<script type="text/javascript">
+	
+	var firebase = firebase.database().ref();
+
+	function tf() {
+		firebase.on('child_added', snapshot => {
+			var childData = snapshot.val();
+			//document.getElementById("p").innerHTML = document.getElementById("p").innerHTML + string;
+			document.getElementById("p").value = document.getElementById("p").value + "\n" + (document.getElementById("p").value = childData);
+			document.getElementById("btn").style.display = "none";
+			//document.getElementById("p").value = childData; 
+
+		});
+	}
+
+</script>
+
+</body>
+</html>
