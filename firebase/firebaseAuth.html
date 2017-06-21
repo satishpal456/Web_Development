@@ -7,7 +7,7 @@
 	
 	Username : <input id="un" type="text" placeholder="Username..."><br><br>
 	Password : <input id="pw" type="password" placeholder="Password..."><br><br>
-	<button id="btn" onclick="sbtn()">SignUp</button>
+	<button onclick="sbtn()">SignUp</button>
 	<button onclick="login()">Login</button>
 
 	<script src="https://www.gstatic.com/firebasejs/4.1.2/firebase.js"></script>
@@ -36,8 +36,14 @@
 		function login() {
 			var usr = document.getElementById('un').value;
 			var pwd = document.getElementById('pw').value;
-			var fb = user.signInWithEmailAndPassword(usr,pwd);
-			console.log(fb);
+			user.signInWithEmailAndPassword(usr,pwd)
+			.then(function (currentUser){
+				alert("Logged In.")
+			})
+			.catch(function (err) {
+					alert(err.message);
+			});
+			
 		}
 	
 	</script>

@@ -1,0 +1,193 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Online Complain</title>
+	<link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+	<link rel="stylesheet" href="https://code.getmdl.io/1.3.0/material.indigo-pink.min.css">
+	<script defer src="https://code.getmdl.io/1.3.0/material.min.js"></script>
+	<style type="text/css">
+		img {
+			position: absolute;
+		}
+
+		#p {
+			position: relative;
+			margin-top: 75px;
+			border: 4px solid black;
+			margin-right:750px;
+			margin-left: 100px; 
+			background-color: transparent;
+			color: blue; 
+			opacity: 0.9;
+		}
+
+		#p p {
+			margin-left: 85px;
+		}
+
+		#p button {
+			margin-left: 85px;
+		}
+
+		.mdl-textfield {
+			margin-left: 85px;
+		}
+
+		#push {
+			position: relative;
+			margin-top: 55px;
+			margin-right:750px;
+			margin-left: 100px; 
+			background-color: transparent;
+			color: blue; 
+			font-size: 30px;
+			opacity: 0.9;
+		}
+
+		#mai {
+			position: relative;
+			margin-top: 75px;
+			margin-right:750px;
+			margin-left: 100px; 
+			background-color: transparent;
+			color: blue; 	
+		}
+
+		#pop {
+			position: relative;
+			margin-top: 75px;
+			margin-right:750px;
+			margin-left: 100px; 
+			background-color: transparent;
+			color: blue;
+		}
+
+	</style>
+</head>
+<body>
+
+<div class="mdl-layout mdl-js-layout">
+  <header class="mdl-layout__header mdl-layout__header--scroll">
+    <div class="mdl-layout__header-row">
+      <span class="mdl-layout-title" style="font-size: 30px;">Online Complain Site</span>
+      <div class="mdl-layout-spacer"></div>
+      <nav class="mdl-navigation">
+        <a class="mdl-navigation__link" id="link1" style="display: none;" onclick="complain()">Complain Online</a>
+        <a class="mdl-navigation__link" id="link2" style="display: none;" onclick="see()">See Complains</a>
+        <a class="mdl-navigation__link" id="link3" style="display: none;" href="">SignOut</a>
+      </nav>
+    </div>
+  </header>
+  
+	 <div>
+	  	<img style="height: 608px; width: 1350px; opacity: 0.5;" src="train3.jpg">
+	  	
+	  	<div id="p">
+	  		<br><br><p>Username : <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
+	    						  <input class="mdl-textfield__input" type="text" id="un" autocomplete="off">
+	                              <label class="mdl-textfield__label" for="un">Username...</label></div><br><br>
+	                    <p>Password : </p><div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
+	    						  <input class="mdl-textfield__input" type="password" id="pw">
+	                              <label class="mdl-textfield__label" for="pw">Password...</label></div></p><br>
+	  		<button class="mdl-button mdl-js-button mdl-button--raised mdl-button--colored" onclick="login()">LogIn</button>
+	  		<button class="mdl-button mdl-js-button mdl-button--raised mdl-button--colored" onclick="sbtn()">SignUp</button><br><br><br>
+	    </div>    
+  	
+  		<div id="push" style="display: none;">
+  			<h4> Your Complain Here : </h4><textarea id="text" rows="25" cols="75"></textarea><br><br><br>
+    		<button class="mdl-button mdl-js-button mdl-button--raised mdl-button--colored" onclick="sbtdata()">Submit</button>
+  		</div>
+
+  		<div id="mai" style="display: none;">
+  			<h4> You might be thinking there are so many complain sites which works like this and also goverment sites which registers your complain. But one key thing betwwn those sites and this is on those sites nothing comes up even as you report 2 or 3 times. But here everything will be listen because every one can now see problems in the train and goverment has to do somathing about it.</h4>
+  		</div>
+
+  		<div id="pop" style="display: none;">
+  			<textarea id="popdata" rows="25" cols="75"></textarea><br><br>
+			<button class="mdl-button mdl-js-button mdl-button--raised mdl-button--colored" onclick="tf()" id="btn">SHOW COMPLAINS</button>
+  		</div>
+
+  	</div>
+  </div>
+  
+</div>
+
+<script src="https://www.gstatic.com/firebasejs/4.1.2/firebase.js"></script>
+<script>
+  var config = {
+    apiKey: "AIzaSyCKgPwaAhG9hlSYsIvQ-O_IJZ-cArYT5UU",
+    authDomain: "website-60d93.firebaseapp.com",
+    databaseURL: "https://website-60d93.firebaseio.com",
+    projectId: "website-60d93",
+    storageBucket: "website-60d93.appspot.com",
+    messagingSenderId: "123116158626"
+  };
+  firebase.initializeApp(config);
+</script>
+
+<script type="text/javascript">
+	
+	var user = firebase.auth();		
+	var usr = document.getElementById('un').value;
+	var pwd = document.getElementById('pw').value;
+
+	function sbtn() {			
+		user.createUserWithEmailAndPassword(usr,pwd)
+		.then(function (currentUser) {
+			alert("User Created. Now Log In. ")
+		})
+		.catch(function (err) {
+			alert(err.message)
+		});
+	}
+
+	function login() {
+		var usr = document.getElementById('un').value;
+		var pwd = document.getElementById('pw').value;
+		user.signInWithEmailAndPassword(usr,pwd)
+		.then(function (currentUser) {
+			document.getElementById("link1").style.display = "block";
+			document.getElementById("link2").style.display = "block";
+			document.getElementById("link3").style.display = "block";
+			document.getElementById("p").style.display = "none";
+			document.getElementById("mai").style.display = "block";
+		})
+		.catch(function (err) {
+			alert(err.message);
+		});		
+	}
+
+	function complain() {
+		document.getElementById("push").style.display = "block";
+		document.getElementById("mai").style.display = "none";
+		document.getElementById("pop").style.display = "none";
+	}
+
+	function see() {
+		document.getElementById("push").style.display = "none";
+		document.getElementById("mai").style.display = "none";
+		document.getElementById("pop").style.display = "block";
+	}
+
+	function sbtdata() {
+    	var returnData = document.getElementById("text").value;
+    	var firebaseData = firebase.database().ref();
+    	firebaseData.push().set(returnData);
+    	document.getElementById("text").value = "";
+    	alert("Your Complain is sent and we will try to look forward to it as soon as possible.");
+  	}
+
+  	function tf() {
+			
+		var firebaseData = firebase.database().ref();
+		firebaseData.on('child_added', snapshot => {
+			var childData = snapshot.val();
+			document.getElementById("popdata").value = document.getElementById("popdata").value + "\n" + (document.getElementById("popdata").value = childData);
+			document.getElementById("btn").style.display = "none"; 
+		});
+	}
+
+</script>
+
+</body>
+</html>
