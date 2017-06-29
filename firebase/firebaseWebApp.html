@@ -89,7 +89,7 @@
 	                    <p>Password : </p><div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
 	    						  <input class="mdl-textfield__input" type="password" id="pw">
 	                              <label class="mdl-textfield__label" for="pw">Password...</label></div></p><br>
-	  		<button class="mdl-button mdl-js-button mdl-button--raised mdl-button--colored" onclick="login()">LogIn</button>
+	  		<button class="mdl-button mdl-js-button mdl-button--raised mdl-button--colored" onclick="log()">LogIn</button>
 	  		<button class="mdl-button mdl-js-button mdl-button--raised mdl-button--colored" onclick="sbtn()">SignUp</button><br><br><br>
 	    </div>    
   	
@@ -103,7 +103,20 @@
   		</div>
 
   		<div id="pop" style="display: none;">
-  			<textarea id="popdata" rows="25" cols="75"></textarea><br><br>
+			  <textarea id="popdata" rows="25" cols="75">
+  			<table>
+				  <thead>
+					  <tr>
+						  <td>Category</td>
+						  <td>pnr</td>
+						  <td>complain</td>
+						  <td>userID</td>
+					  </tr>
+					</thead>
+					<tbody id="table1">
+
+					</tbody>
+  			</table>
 			<button class="mdl-button mdl-js-button mdl-button--raised mdl-button--colored" onclick="tf()" id="btn">SHOW COMPLAINS</button>
   		</div>
 
@@ -111,7 +124,7 @@
   </div>
   
 </div>
-
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 <script src="https://www.gstatic.com/firebasejs/4.1.2/firebase.js"></script>
 <script>
   var config = {
@@ -141,7 +154,7 @@
 		});
 	}
 
-	function login() {
+	function log() {
 		var usr = document.getElementById('un').value;
 		var pwd = document.getElementById('pw').value;
 		user.signInWithEmailAndPassword(usr,pwd)
@@ -171,7 +184,7 @@
 
 	function sbtdata() {
     	var returnData = document.getElementById("text").value;
-    	var firebaseData = firebase.database().ref();
+    	var firebaseData = firebase.database().ref().child();
     	firebaseData.push().set(returnData);
     	document.getElementById("text").value = "";
     	alert("Your Complain is sent and we will try to look forward to it as soon as possible.");
@@ -179,10 +192,13 @@
 
   	function tf() {
 			
-		var firebaseData = firebase.database().ref();
-		firebaseData.on('child_added', snapshot => {
-			var childData = snapshot.val();
-			document.getElementById("popdata").value = document.getElementById("popdata").value + "\n" + (document.getElementById("popdata").value = childData);
+		firebase.database().ref().child("complaints").on('child_added', snapshot => {
+			var pnr = snapshot.child("pnr").val();
+			var userid = snapshot.child("userID").val();
+			var complain = snapshot.child("complain").val();
+			var category =snapshot.child("category").val();
+			//document.getElementById("popdata").value = document.getElementById("popdata").value + "\n" + (document.getElementById("popdata").value = pnr) + "-" + (document.getElementById("popdata").value = userid);;
+			$("table").append("<tr><td>" + pnr +"</td></tr>");
 			document.getElementById("btn").style.display = "none"; 
 		});
 	}
