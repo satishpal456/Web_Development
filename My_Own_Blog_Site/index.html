@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		
+		<title>Welcome KP</title>
+		<link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+		<link rel="stylesheet" href="https://code.getmdl.io/1.3.0/material.indigo-pink.min.css">
+		<script defer src="https://code.getmdl.io/1.3.0/material.min.js"></script>
+		<link rel="stylesheet" type="text/css" href="style.css">
+	
+	</head>
+	<body>
+
+		<!-- Login Page -->
+		<div id="login-page">
+			<img src="4.jpg" alt="Background-Image">
+			<h1>Welcome KP</h1>
+			<h2>Login Here to get Access to Your Data</h2>
+			<div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label" id="input-data">
+    			<input class="mdl-textfield__input" type="text" id="username-kp" style="color: orange;">
+    			<label class="mdl-textfield__label" for="username-kp" style="color: blue; font-size: 20px;">Username...</label>
+  			</div>
+  			<div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label" id="input-data">
+  				<input class="mdl-textfield__input" type="text" id="password-kp" style="color: orange;">
+    			<label class="mdl-textfield__label" for="password-kp" style="color: blue; font-size: 20px;">Password...</label>
+    		</div><br>
+    		<button class="mdl-button mdl-js-button mdl-button--raised mdl-button--colored" id="input-data" style="background-color: darkblue;" onclick="login()">Login</button>
+		</div>
+
+		<!-- Firebase Init -->
+		<script src="https://www.gstatic.com/firebasejs/4.1.3/firebase.js"></script>
+		<script>
+		  var config = {
+		    apiKey: "AIzaSyCKgPwaAhG9hlSYsIvQ-O_IJZ-cArYT5UU",
+		    authDomain: "website-60d93.firebaseapp.com",
+		    databaseURL: "https://website-60d93.firebaseio.com",
+		    projectId: "website-60d93",
+		    storageBucket: "website-60d93.appspot.com",
+		    messagingSenderId: "123116158626"
+		  };
+		  firebase.initializeApp(config);
+		</script>
+		<script src="main.js"></script>
+	
+	</body>
+</html>
